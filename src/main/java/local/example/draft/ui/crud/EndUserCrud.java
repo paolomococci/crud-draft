@@ -188,14 +188,14 @@ public class EndUserCrud
         }
         final boolean persisted = temp.getId() != null;
         if (persisted) {
-            user = endUserRepo.findOne(temp.getId());
+            //user = endUserRepo.findOne(temp.getId());
             /**
              * if you want to use Spring Boot 2.0.0.RELEASE in place of
              * Spring Boot 1.5.10.RELEASE, you will have to comment or 
              * delete the line of code that precedes this note and 
              * uncomment the line of code below
              */
-            //user = endUserRepo.getOne(temp.getId());
+            user = endUserRepo.getOne(temp.getId());
         } else {
             user = temp;
         }
