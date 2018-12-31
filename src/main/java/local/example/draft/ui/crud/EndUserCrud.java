@@ -193,7 +193,7 @@ public class EndUserCrud
              * if you want to use Spring Boot 2.0.0.RELEASE in place of
              * Spring Boot 1.5.10.RELEASE, you will have to comment or 
              * delete the line of code that precedes this note and 
-             * uncomment the line of code below
+             * remove the comment on the line of code below
              */
             user = endUserRepo.getOne(temp.getId());
         } else {
