@@ -28,6 +28,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 import local.example.draft.validator.constraints.Alpha;
+import lombok.Data;
 
 /**
  *
@@ -37,6 +38,7 @@ import local.example.draft.validator.constraints.Alpha;
 @Entity
 @Table(name = "ENDUSERENTITY", 
         uniqueConstraints = @UniqueConstraint(columnNames = {"USERNAME"}))
+@Data
 public class EndUserEntity 
         implements Serializable {
     
@@ -65,34 +67,6 @@ public class EndUserEntity
         setName(name);
         setSurname(surname);
         setUsername(username);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     @Override
