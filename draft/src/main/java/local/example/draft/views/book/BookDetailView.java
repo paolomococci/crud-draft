@@ -19,7 +19,7 @@ import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.ValidationException;
-import com.vaadin.flow.data.converter.StringToIntegerConverter;
+import com.vaadin.flow.data.converter.StringToLongConverter;
 import com.vaadin.flow.data.renderer.TemplateRenderer;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
@@ -125,7 +125,7 @@ public class BookDetailView
         binder = new BeanValidationBinder<>(Book.class);
 
         // Bind fields. This where you'd define e.g. validation rules
-        binder.forField(pages).withConverter(new StringToIntegerConverter("Only numbers are allowed")).bind("pages");
+        binder.forField(pages).withConverter(new StringToLongConverter("Only numbers are allowed")).bind("pages");
 
         binder.bindInstanceFields(this);
 
@@ -155,7 +155,7 @@ public class BookDetailView
 
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
-        Optional<Long> bookId = event.getRouteParameters().getInteger(BOOK_ID);
+        Optional<Long> bookId = event.getRouteParameters().getLong(BOOK_ID);
         if (bookId.isPresent()) {
             Optional<Book> bookFromBackend = bookService.get(bookId.get());
             if (bookFromBackend.isPresent()) {
