@@ -81,11 +81,11 @@ public class BookDetailView
 
         add(splitLayout);
 
-        bookGrid.addColumn("title").setAutoWidth(true);
-        bookGrid.addColumn("author").setAutoWidth(true);
-        bookGrid.addColumn("publicationDate").setAutoWidth(true);
-        bookGrid.addColumn("pages").setAutoWidth(true);
-        bookGrid.addColumn("isbn").setAutoWidth(true);
+        bookGrid.addColumn(Book::getTitle).setHeader("Title").setAutoWidth(true);
+        bookGrid.addColumn(Book::getAuthor).setHeader("Author").setAutoWidth(true);
+        bookGrid.addColumn(Book::getPublicationDate).setHeader("Publication Date").setAutoWidth(true);
+        bookGrid.addColumn(Book::getPages).setHeader("Pages").setAutoWidth(true);
+        bookGrid.addColumn(Book::getIsbn).setHeader("ISBN").setAutoWidth(true);
 
         /* TemplateRenderer is deprecated */
         TemplateRenderer<Book> availabilityRenderer = TemplateRenderer.<Book>of(
