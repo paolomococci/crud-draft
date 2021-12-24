@@ -19,7 +19,7 @@ public class BookService {
         this.repository = repository;
     }
 
-    public Optional<Book> get(Integer id) {
+    public Optional<Book> get(Long id) {
         return repository.findById(id);
     }
 
@@ -27,7 +27,7 @@ public class BookService {
         return repository.save(entity);
     }
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         repository.deleteById(id);
     }
 
