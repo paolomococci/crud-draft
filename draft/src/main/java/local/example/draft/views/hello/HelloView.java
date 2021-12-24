@@ -1,6 +1,7 @@
 package local.example.draft.views.hello;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -25,7 +26,9 @@ public class HelloView
         helloButton = new Button("Hello");
         helloButton.addClickListener(e -> {
             Notification.show("Hello " + nameTextField.getValue() + "!");
+            nameTextField.setValue("");
         });
+        helloButton.addClickShortcut(Key.ENTER);
 
         setMargin(true);
         setVerticalComponentAlignment(
