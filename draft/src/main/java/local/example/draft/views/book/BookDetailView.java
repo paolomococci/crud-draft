@@ -155,7 +155,7 @@ public class BookDetailView
 
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
-        Optional<Integer> bookId = event.getRouteParameters().getInteger(BOOK_ID);
+        Optional<Long> bookId = event.getRouteParameters().getInteger(BOOK_ID);
         if (bookId.isPresent()) {
             Optional<Book> bookFromBackend = bookService.get(bookId.get());
             if (bookFromBackend.isPresent()) {
