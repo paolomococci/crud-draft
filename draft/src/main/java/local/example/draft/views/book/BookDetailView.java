@@ -19,6 +19,7 @@ import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.ValidationException;
+import com.vaadin.flow.data.converter.StringToIntegerConverter;
 import com.vaadin.flow.data.converter.StringToLongConverter;
 import com.vaadin.flow.data.renderer.TemplateRenderer;
 import com.vaadin.flow.router.BeforeEnterEvent;
@@ -49,7 +50,7 @@ public class BookDetailView
     private final String BOOK_ID = "bookID";
     private final String BOOK_EDIT_ROUTE_TEMPLATE = "book-detail/%d/edit";
 
-    private Grid<Book> grid = new Grid<>(Book.class, false);
+    private Grid<Book> bookGrid = new Grid<>(Book.class, false);
 
     private TextField title;
     private TextField author;
@@ -61,7 +62,7 @@ public class BookDetailView
     private Button cancel = new Button("Cancel");
     private Button save = new Button("Save");
 
-    private BeanValidationBinder<Book> binder;
+    private BeanValidationBinder<Book> bookBeanValidationBinder;
 
     private Book book;
 
@@ -79,11 +80,11 @@ public class BookDetailView
 
         add(splitLayout);
 
-        grid.addColumn("title").setAutoWidth(true);
-        grid.addColumn("author").setAutoWidth(true);
-        grid.addColumn("publicationDate").setAutoWidth(true);
-        grid.addColumn("pages").setAutoWidth(true);
-        grid.addColumn("isbn").setAutoWidth(true);
+        bookGrid.addColumn("title").setAutoWidth(true);
+        bookGrid.addColumn("author").setAutoWidth(true);
+        bookGrid.addColumn("publicationDate").setAutoWidth(true);
+        bookGrid.addColumn("pages").setAutoWidth(true);
+        bookGrid.addColumn("isbn").setAutoWidth(true);
 
         /* TemplateRenderer is deprecated */
         TemplateRenderer<Book> availabilityRenderer = TemplateRenderer.<Book>of(
@@ -104,15 +105,15 @@ public class BookDetailView
                 Book::isAvailability
         );
 
-        grid.addColumn(availabilityRenderer).setHeader("Availability").setAutoWidth(true);
+        bookGrid.addColumn(availabilityRenderer).setHeader("Availability").setAutoWidth(true);
 
-        grid.setItems(query -> bookService.list(
+        bookGrid.setItems(query -> bookService.list(
                 PageRequest.of(query.getPage(), query.getPageSize(), VaadinSpringDataHelpers.toSpringDataSort(query)))
                 .stream());
-        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
-        grid.setHeightFull();
+        bookGrid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
+        bookGrid.setHeightFull();
 
-        grid.asSingleSelect().addValueChangeListener(event -> {
+        bookGrid.asSingleSelect().addValueChangeListener(event -> {
             if (event.getValue() != null) {
                 UI.getCurrent().navigate(String.format(BOOK_EDIT_ROUTE_TEMPLATE, event.getValue().getId()));
             } else {
@@ -121,13 +122,11 @@ public class BookDetailView
             }
         });
 
-        // Configure Form
-        binder = new BeanValidationBinder<>(Book.class);
+        bookBeanValidationBinder = new BeanValidationBinder<>(Book.class);
 
-        // Bind fields. This where you'd define e.g. validation rules
-        binder.forField(pages).withConverter(new StringToLongConverter("Only numbers are allowed")).bind("pages");
+        bookBeanValidationBinder.forField(pages).withConverter(new StringToIntegerConverter("Only numbers are allowed")).bind("pages");
 
-        binder.bindInstanceFields(this);
+        bookBeanValidationBinder.bindInstanceFields(this);
 
         cancel.addClickListener(e -> {
             clearForm();
@@ -139,7 +138,7 @@ public class BookDetailView
                 if (this.book == null) {
                     this.book = new Book();
                 }
-                binder.writeBean(this.book);
+                bookBeanValidationBinder.writeBean(this.book);
 
                 bookService.update(this.book);
                 clearForm();
@@ -213,12 +212,12 @@ public class BookDetailView
         wrapper.setId("grid-wrapper");
         wrapper.setWidthFull();
         splitLayout.addToPrimary(wrapper);
-        wrapper.add(grid);
+        wrapper.add(bookGrid);
     }
 
     private void refreshGrid() {
-        grid.select(null);
-        grid.getLazyDataView().refreshAll();
+        bookGrid.select(null);
+        bookGrid.getLazyDataView().refreshAll();
     }
 
     private void clearForm() {
@@ -227,6 +226,6 @@ public class BookDetailView
 
     private void populateForm(Book value) {
         this.book = value;
-        binder.readBean(this.book);
+        bookBeanValidationBinder.readBean(this.book);
     }
 }
