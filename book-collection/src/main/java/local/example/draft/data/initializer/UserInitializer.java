@@ -23,9 +23,8 @@ public class UserInitializer {
 
     @Bean
     public CommandLineRunner loadData(
-        PasswordEncoder passwordEncoder, 
-        UserRepository userRepository, 
-        BookRepository bookRepository
+            PasswordEncoder passwordEncoder,
+            UserRepository userRepository
     ) {
         return args -> {
             Logger logger = LoggerFactory.getLogger(getClass());
