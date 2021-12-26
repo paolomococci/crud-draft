@@ -47,6 +47,9 @@ public class BookDetailView
         extends Div
         implements BeforeEnterObserver {
 
+    @Autowired
+    BookService bookService;
+
     private final String BOOK_EDIT_ROUTE_TEMPLATE = "book-detail/%d/edit";
 
     private final Grid<Book> bookGrid = new Grid<>(Book.class, false);
@@ -65,10 +68,8 @@ public class BookDetailView
 
     private Book book;
 
-    private final BookService bookService;
+    public BookDetailView() {
 
-    public BookDetailView(@Autowired BookService bookService) {
-        this.bookService = bookService;
         addClassNames("book-detail-view", "flex", "flex-col", "h-full");
 
         SplitLayout splitLayout = new SplitLayout();
