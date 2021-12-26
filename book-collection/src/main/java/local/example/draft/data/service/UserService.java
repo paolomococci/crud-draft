@@ -13,11 +13,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    private UserRepository repository;
-
-    public UserService(@Autowired UserRepository repository) {
-        this.repository = repository;
-    }
+    @Autowired
+    UserRepository repository;
 
     public Optional<User> get(Long id) {
         return repository.findById(id);
