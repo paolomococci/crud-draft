@@ -124,8 +124,8 @@ public class BookDetailView
         bookBeanValidationBinder = new BeanValidationBinder<>(Book.class);
 
         bookBeanValidationBinder.forField(pages).withConverter(
-                new StringToIntegerConverter("Only numbers are allowed")
-        ).bind("pages");
+                new StringToIntegerConverter("Only numbers are allowed"))
+                        .bind("pages");
 
         bookBeanValidationBinder.bindInstanceFields(this);
 
