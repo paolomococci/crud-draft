@@ -21,7 +21,6 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
-import com.vaadin.flow.data.converter.StringToLongConverter;
 import com.vaadin.flow.data.renderer.TemplateRenderer;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
@@ -48,10 +47,9 @@ public class BookDetailView
         extends Div
         implements BeforeEnterObserver {
 
-    private final String BOOK_ID = "bookID";
     private final String BOOK_EDIT_ROUTE_TEMPLATE = "book-detail/%d/edit";
 
-    private Grid<Book> bookGrid = new Grid<>(Book.class, false);
+    private final Grid<Book> bookGrid = new Grid<>(Book.class, false);
 
     private TextField title;
     private TextField author;
@@ -60,14 +58,14 @@ public class BookDetailView
     private TextField isbn;
     private Checkbox availability;
 
-    private Button cancel = new Button("Cancel");
-    private Button save = new Button("Save");
+    private final Button cancel = new Button("Cancel");
+    private final Button save = new Button("Save");
 
-    private BeanValidationBinder<Book> bookBeanValidationBinder;
+    private final BeanValidationBinder<Book> bookBeanValidationBinder;
 
     private Book book;
 
-    private BookService bookService;
+    private final BookService bookService;
 
     public BookDetailView(@Autowired BookService bookService) {
         this.bookService = bookService;
@@ -125,7 +123,9 @@ public class BookDetailView
 
         bookBeanValidationBinder = new BeanValidationBinder<>(Book.class);
 
-        bookBeanValidationBinder.forField(pages).withConverter(new StringToIntegerConverter("Only numbers are allowed")).bind("pages");
+        bookBeanValidationBinder.forField(pages).withConverter(
+                new StringToIntegerConverter("Only numbers are allowed")
+        ).bind("pages");
 
         bookBeanValidationBinder.bindInstanceFields(this);
 
@@ -147,7 +147,7 @@ public class BookDetailView
                 Notification.show("Book details stored.");
                 UI.getCurrent().navigate(BookDetailView.class);
             } catch (ValidationException validationException) {
-                Notification.show("An exception happened while trying to store the book details.");
+                Notification.show("An exception happened while trying to store the book details!");
             }
         });
         save.addClickShortcut(Key.ENTER);
@@ -155,14 +155,19 @@ public class BookDetailView
 
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
+        String BOOK_ID = "bookID";
         Optional<Long> bookId = event.getRouteParameters().getLong(BOOK_ID);
         if (bookId.isPresent()) {
             Optional<Book> bookFromBackend = bookService.get(bookId.get());
             if (bookFromBackend.isPresent()) {
                 populateForm(bookFromBackend.get());
             } else {
-                Notification.show(String.format("The requested book was not found, ID = %d", bookId.get()), 3000,
-                        Notification.Position.BOTTOM_START);
+                Notification.show(
+                        String.format("The requested book was not found, ID = %d",
+                        bookId.get()),
+                        3000,
+                        Notification.Position.BOTTOM_START
+                );
                 refreshGrid();
                 event.forwardTo(BookDetailView.class);
             }
@@ -170,6 +175,7 @@ public class BookDetailView
     }
 
     private void createEditorLayout(SplitLayout splitLayout) {
+
         Div editorLayoutDiv = new Div();
         editorLayoutDiv.setClassName("flex flex-col");
         editorLayoutDiv.setWidth("400px");
@@ -179,6 +185,7 @@ public class BookDetailView
         editorLayoutDiv.add(editorDiv);
 
         FormLayout formLayout = new FormLayout();
+
         title = new TextField("Title");
         author = new TextField("Author");
         publicationDate = new DatePicker("Publication Date");
@@ -186,7 +193,15 @@ public class BookDetailView
         isbn = new TextField("Isbn");
         availability = new Checkbox("Availability");
         availability.getStyle().set("padding-top", "var(--lumo-space-m)");
-        Component[] fields = new Component[]{title, author, publicationDate, pages, isbn, availability};
+
+        Component[] fields = new Component[] {
+                title,
+                author,
+                publicationDate,
+                pages,
+                isbn,
+                availability
+        };
 
         for (Component field : fields) {
             ((HasStyle) field).addClassName("full-width");
