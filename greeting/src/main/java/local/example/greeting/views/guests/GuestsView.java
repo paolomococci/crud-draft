@@ -111,7 +111,7 @@ public class GuestsView
 
         guestGrid.addColumn(acknowledgedRenderer).setHeader("Acknowledged").setAutoWidth(true);
 
-        guestGrid.setItems(query -> guestService.list(PageRequest.of(
+        guestGrid.setItems(query -> guestService.paginate(PageRequest.of(
                 query.getPage(),
                 query.getPageSize(),
                 VaadinSpringDataHelpers.toSpringDataSort(query)
@@ -164,7 +164,7 @@ public class GuestsView
         String GUEST_ID = "guestID";
         Optional<Integer> guestId = event.getRouteParameters().getInteger(GUEST_ID);
         if (guestId.isPresent()) {
-            Optional<Guest> guestFromBackend = guestService.get(guestId.get());
+            Optional<Guest> guestFromBackend = guestService.read(guestId.get());
             if (guestFromBackend.isPresent()) {
                 populateForm(guestFromBackend.get());
             } else {
