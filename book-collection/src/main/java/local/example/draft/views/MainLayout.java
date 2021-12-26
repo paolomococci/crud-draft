@@ -30,17 +30,11 @@ import local.example.draft.views.home.HomeView;
 public class MainLayout
         extends AppLayout {
 
-    public static class MenuItemInfo {
-
-        private String text;
-        private String iconClass;
-        private Class<? extends Component> view;
-
-        public MenuItemInfo(String text, String iconClass, Class<? extends Component> view) {
-            this.text = text;
-            this.iconClass = iconClass;
-            this.view = view;
-        }
+    public record MenuItemInfo(
+            String text,
+            String iconClass,
+            Class<? extends Component> view
+    ) {
 
         public String getText() {
             return text;
@@ -56,10 +50,13 @@ public class MainLayout
 
     }
 
-    private AuthenticatedUser authenticatedUser;
-    private AccessAnnotationChecker accessChecker;
+    private final AuthenticatedUser authenticatedUser;
+    private final AccessAnnotationChecker accessChecker;
 
-    public MainLayout(AuthenticatedUser authenticatedUser, AccessAnnotationChecker accessChecker) {
+    public MainLayout(
+            AuthenticatedUser authenticatedUser,
+            AccessAnnotationChecker accessChecker
+    ) {
         this.authenticatedUser = authenticatedUser;
         this.accessChecker = accessChecker;
 
@@ -68,13 +65,30 @@ public class MainLayout
 
     private Component createHeaderContent() {
         Header header = new Header();
-        header.addClassNames("bg-base", "border-b", "border-contrast-10", "box-border", "flex", "flex-col", "w-full");
+        header.addClassNames(
+                "bg-base",
+                "border-b",
+                "border-contrast-10",
+                "box-border",
+                "flex",
+                "flex-col",
+                "w-full"
+        );
 
         Div layout = new Div();
-        layout.addClassNames("flex", "h-xl", "items-center", "px-l");
+        layout.addClassNames(
+                "flex",
+                "h-xl",
+                "items-center",
+                "px-l"
+        );
 
-        H1 appName = new H1("Draft");
-        appName.addClassNames("my-0", "me-auto", "text-l");
+        H1 appName = new H1("Book Collection");
+        appName.addClassNames(
+                "my-0",
+                "me-auto",
+                "text-l"
+        );
         layout.add(appName);
 
         Optional<User> maybeUser = authenticatedUser.get();
@@ -86,24 +100,42 @@ public class MainLayout
 
             ContextMenu userMenu = new ContextMenu(avatar);
             userMenu.setOpenOnClick(true);
-            userMenu.addItem("Logout", e -> {
-                authenticatedUser.logout();
-            });
+            userMenu.addItem(
+                    "Logout",
+                    e -> authenticatedUser.logout()
+            );
 
             Span name = new Span(user.getName());
-            name.addClassNames("font-medium", "text-s", "text-secondary");
+            name.addClassNames(
+                    "font-medium",
+                    "text-s",
+                    "text-secondary"
+            );
 
             layout.add(avatar, name);
         } else {
-            Anchor loginLink = new Anchor("login", "Sign in");
+            Anchor loginLink = new Anchor(
+                    "login",
+                    "Login"
+            );
             layout.add(loginLink);
         }
 
         Nav nav = new Nav();
-        nav.addClassNames("flex", "gap-s", "overflow-auto", "px-m");
+        nav.addClassNames(
+                "flex",
+                "gap-s",
+                "overflow-auto",
+                "px-m"
+        );
 
         UnorderedList list = new UnorderedList();
-        list.addClassNames("flex", "list-none", "m-0", "p-0");
+        list.addClassNames(
+                "flex",
+                "list-none",
+                "m-0",
+                "p-0"
+        );
         nav.add(list);
 
         for (RouterLink link : createLinks()) {
@@ -144,17 +176,30 @@ public class MainLayout
 
     private static RouterLink createLink(MenuItemInfo menuItemInfo) {
         RouterLink link = new RouterLink();
-        link.addClassNames("flex", "h-m", "items-center", "px-s", "relative", "text-secondary");
+        link.addClassNames(
+                "flex",
+                "h-m",
+                "items-center",
+                "px-s", "relative",
+                "text-secondary"
+        );
         link.setRoute(menuItemInfo.getView());
 
         Span icon = new Span();
-        icon.addClassNames("me-s", "text-l");
+        icon.addClassNames(
+                "me-s",
+                "text-l"
+        );
         if (!menuItemInfo.getIconClass().isEmpty()) {
             icon.addClassNames(menuItemInfo.getIconClass());
         }
 
         Span text = new Span(menuItemInfo.getText());
-        text.addClassNames("font-medium", "text-s", "whitespace-nowrap");
+        text.addClassNames(
+                "font-medium",
+                "text-s",
+                "whitespace-nowrap"
+        );
 
         link.add(icon, text);
         return link;
