@@ -18,12 +18,11 @@ import local.example.draft.views.MainLayout;
 public class HelloView
         extends HorizontalLayout {
 
-    private TextField nameTextField;
-    private Button helloButton;
+    private final TextField nameTextField;
 
     public HelloView() {
         nameTextField = new TextField("Please enter your name");
-        helloButton = new Button("Hello");
+        Button helloButton = new Button("Hello");
         helloButton.addClickListener(e -> {
             Notification.show("Hello " + nameTextField.getValue() + "!");
             nameTextField.setValue("");
