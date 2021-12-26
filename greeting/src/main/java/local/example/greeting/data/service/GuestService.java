@@ -1,19 +1,28 @@
 package local.example.greeting.data.service;
 
 import local.example.greeting.data.entity.Guest;
-import org.springframework.data.domain.PageRequest;
+import local.example.greeting.data.repository.GuestRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
 
 public class GuestService {
-    public Optional<Object> list(PageRequest of) {
-        return null;
+
+    @Autowired
+    GuestRepository guestRepository;
+
+    public Optional<Guest> read(Integer id) {
+        return this.guestRepository.findById(id);
     }
 
-    public Optional<Guest> get(Integer integer) {
-        return null;
+    public Page<Guest> paginate(Pageable pageable) {
+        return this.guestRepository.findAll(pageable);
     }
 
-    public void update(Guest guest) {
+    public Guest update(Guest guest) {
+        return this.guestRepository.save(guest);
     }
 }
