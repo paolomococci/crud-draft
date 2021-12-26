@@ -22,7 +22,7 @@ public class GuestService {
         return this.guestRepository.findAll(pageable);
     }
 
-    public Guest update(Guest guest) {
-        return this.guestRepository.save(guest);
+    public void update(Guest guest) {
+        this.guestRepository.save(guest);
     }
 }
