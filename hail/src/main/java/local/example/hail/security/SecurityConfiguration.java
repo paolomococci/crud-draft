@@ -51,4 +51,8 @@ public class SecurityConfiguration
         super.configure(web);
         web.ignoring().antMatchers("/images/*.png");
     }
+
+    public void setAuthSecret(String authSecret) {
+        this.authSecret = authSecret;
+    }
 }
