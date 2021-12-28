@@ -14,11 +14,8 @@ import org.springframework.data.domain.Pageable;
 @RolesAllowed("admin")
 public class GuestEndpoint {
 
-    private GuestService service;
-
-    public GuestEndpoint(@Autowired GuestService service) {
-        this.service = service;
-    }
+    @Autowired
+    GuestService service;
 
     @Nonnull
     public Page<@Nonnull Guest> list(Pageable page) {
