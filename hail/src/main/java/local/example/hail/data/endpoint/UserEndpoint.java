@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class UserEndpoint {
 
     @Autowired
-    private AuthenticatedUser authenticatedUser;
+    AuthenticatedUser authenticatedUser;
 
     public Optional<User> getAuthenticatedUser() {
         return authenticatedUser.get();
