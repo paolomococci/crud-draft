@@ -1,10 +1,8 @@
 package local.example.hail.data.initializer;
 
 import com.vaadin.flow.spring.annotation.SpringComponent;
-
 import local.example.hail.data.Role;
 import local.example.hail.data.entity.User;
-import local.example.hail.data.repository.GuestRepository;
 import local.example.hail.data.repository.UserRepository;
 
 import org.slf4j.Logger;
@@ -23,8 +21,7 @@ public class UserInitializer {
     @Bean
     public CommandLineRunner loadData(
             PasswordEncoder passwordEncoder,
-            UserRepository userRepository,
-            GuestRepository guestRepository
+            UserRepository userRepository
     ) {
         return args -> {
             Logger logger = LoggerFactory.getLogger(getClass());
