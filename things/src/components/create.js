@@ -43,3 +43,5 @@ function Create() {
     <div></div>
   )
 }
+
+export default Create
