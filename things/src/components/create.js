@@ -53,6 +53,7 @@ function Create() {
       <Form.Field>
         <Checkbox label="accept terms and conditions" onChange={() => setChecked(!checked)} />
       </Form.Field>
+      <Button onClick={postData} type="submit">create</Button>
       </Form>
     </div>
   )
