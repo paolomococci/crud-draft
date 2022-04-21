@@ -81,3 +81,5 @@ function Update() {
     </div>
   )
 }
+
+export default Update
