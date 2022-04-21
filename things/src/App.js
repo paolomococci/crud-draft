@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 
 import Create from './components/create'
+import Read from './components/read'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           </div>
           <div style={{ margin: 10 }}>
             <h2>list of things</h2>
+            <Route exact path='/read' component={Read} />
           </div>
           <div style={{ margin: 10 }}>
             <p>todo update component</p>
