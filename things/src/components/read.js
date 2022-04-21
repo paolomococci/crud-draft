@@ -54,6 +54,18 @@ function Read() {
   }
 
   return (
-    <div></div>
+    <div>
+      <Table singleLine>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>name</Table.HeaderCell>
+            <Table.HeaderCell>surname</Table.HeaderCell>
+            <Table.HeaderCell>checked</Table.HeaderCell>
+            <Table.HeaderCell>update</Table.HeaderCell>
+            <Table.HeaderCell>delete</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+      </Table>
+    </div>
   )
 }
