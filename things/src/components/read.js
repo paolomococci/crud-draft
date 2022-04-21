@@ -65,6 +65,31 @@ function Read() {
             <Table.HeaderCell>delete</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
+        <Table.Body>
+          {
+            APIData.map(
+              (data) => {
+                return (
+                  <Table.Row>
+                    <Table.Cell>{data.name}</Table.Cell>
+                    <Table.Cell>{data.surname}</Table.Cell>
+                    <Table.Cell>{data.checked ? 'Checked' : 'Unchecked'}</Table.Cell>
+                    <Link to='/update'>
+                      <Table.Cell>
+                        <Button onClick={() => setData(data)}>update</Button>
+                      </Table.Cell>
+                    </Link>
+                    <Link>
+                      <Table.Cell>
+                        <Button onClick={() => onDelete(data.id)}>delete</Button>
+                      </Table.Cell>
+                    </Link>
+                  </Table.Row>
+                )
+              }
+            )
+          }
+        </Table.Body>
       </Table>
     </div>
   )
