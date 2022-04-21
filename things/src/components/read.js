@@ -94,3 +94,5 @@ function Read() {
     </div>
   )
 }
+
+export default Read
