@@ -45,4 +45,11 @@ function Read() {
       }
     )
   }
+  const onDelete = (id) => {
+    axios.delete(`http://localhost/sampledata`).then(
+      () => {
+        getData()
+      }
+    )
+  }
 }
