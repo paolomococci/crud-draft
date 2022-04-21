@@ -32,4 +32,12 @@ function Update() {
     checked,
     setChecked
   ] = useState(false)
+  useEffect(
+    () => {
+      setId(localStorage.getItem('ID'))
+      setName(localStorage.getItem('Name'))
+      setSurname(localStorage.getItem('Surname'))
+      setChecked(localStorage.getItem('Checked'))
+    }, []
+  )
 }
