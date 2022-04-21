@@ -13,3 +13,8 @@ import {
 import {
   useHistory
 } from 'react-router'
+
+function Update() {
+  let history = useHistory()
+  
+}
