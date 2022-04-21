@@ -15,23 +15,29 @@ import {
 } from 'react-router'
 
 function Update() {
+
   let history = useHistory()
+
   const [
     id,
     setId
   ] = useState(null)
+
   const [
     name,
     setName
   ] = useState('')
+
   const [
     surname,
     setSurname
   ] = useState('')
+
   const [
     checked,
     setChecked
   ] = useState(false)
+  
   useEffect(
     () => {
       setId(localStorage.getItem('ID'))
