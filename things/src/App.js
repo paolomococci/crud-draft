@@ -12,7 +12,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <Router>
           <div style={{ margin: 10 }}>
-            <p>todo create component</p>
+            <h2 className="main-header">create</h2>
           </div>
           <div style={{ margin: 10 }}>
             <p>todo read component</p>
