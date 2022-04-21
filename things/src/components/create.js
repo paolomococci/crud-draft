@@ -13,19 +13,24 @@ import {
 } from 'react-router'
 
 function Create() {
+
   let history = useHistory()
+
   const [
     name,
     setName
   ] = useState('')
+
   const [
     surname,
     setSurname
   ] = useState('')
+
   const [
     checked,
     setChecked
   ] = useState(false)
+  
   const postData = () => {
     axios.post(
       `http://localhost/sampledata`,
