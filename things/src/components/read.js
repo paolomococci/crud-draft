@@ -48,9 +48,9 @@ function Read() {
       }
     )
   }
-  
+
   const onDelete = (id) => {
-    axios.delete(`http://localhost/sampledata`).then(
+    axios.delete(`http://localhost/sampledata/${id}`).then(
       () => {
         getData()
       }
