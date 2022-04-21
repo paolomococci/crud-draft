@@ -11,3 +11,19 @@ import {
 import {
   useHistory
 } from 'react-router'
+
+function Create() {
+  let history = useHistory()
+  const [
+    name,
+    setName
+  ] = useState('')
+  const [
+    surname,
+    setSurname
+  ] = useState('')
+  const [
+    checked,
+    setChecked
+  ] = useState(false)
+}
