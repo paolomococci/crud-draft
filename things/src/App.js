@@ -11,7 +11,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Router>
-          <div style={{ margin: 10 }}>
+          <div style={{ margin: 10 }} className="main">
             <h2 className="main-header">create</h2>
           </div>
           <div style={{ margin: 10 }}>
