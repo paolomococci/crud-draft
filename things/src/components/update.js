@@ -49,7 +49,7 @@ function Update() {
 
   const updateAPIData = () => {
     axios.put(
-      `http://localhost/sampledata`,
+      `http://localhost/sampledata/${id}`,
       {
         name,
         surname,
