@@ -37,7 +37,7 @@ function Update() {
     checked,
     setChecked
   ] = useState(false)
-  
+
   useEffect(
     () => {
       setId(localStorage.getItem('ID'))
@@ -46,4 +46,20 @@ function Update() {
       setChecked(localStorage.getItem('Checked'))
     }, []
   )
+
+  const updateAPIData = () => {
+    axios.put(
+      `http://localhost/sampledata`,
+      {
+        name,
+        surname,
+        checked
+      }
+    ).then(
+      () => {
+        history.push('/read')
+      }
+    )
+  }
+  
 }
