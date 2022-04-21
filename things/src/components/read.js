@@ -11,3 +11,19 @@ import {
 import {
   Link
 } from 'react-router-dom'
+
+function Read() {
+  const [
+    APIData,
+    setAPIData
+  ] = useState([])
+  useEffect(
+    () => {
+      axios.get(`http://localhost/sampledata`).then(
+        (response) => {
+          setAPIData(response.data)
+        }
+      )
+    }
+  )
+}
