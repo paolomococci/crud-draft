@@ -7,6 +7,7 @@ import {
 
 import Create from './components/create'
 import Read from './components/read'
+import Update from './components/update'
 
 function App() {
   return (
@@ -23,10 +24,7 @@ function App() {
             <Route exact path='/read' component={Read} />
           </div>
           <div style={{ margin: 10 }}>
-            <p>todo update component</p>
-          </div>
-          <div style={{ margin: 10 }}>
-            <p>todo delete component</p>
+            <Route exact path='/update' component={Update} />
           </div>
         </Router>
       </header>
