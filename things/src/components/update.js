@@ -63,6 +63,21 @@ function Update() {
   }
 
   return (
-    <div></div>
+    <div>
+    <Form className="create-form">
+    <Form.Field>
+      <label>name</label>
+      <input placeholder="name" onChange={(e) => setName(e.target.value)} />
+    </Form.Field>
+    <Form.Field>
+      <label>surname</label>
+      <input placeholder="surname" onChange={(e) => setSurname(e.target.value)} />
+    </Form.Field>
+    <Form.Field>
+      <Checkbox label="accept terms and conditions" onChange={() => setChecked(!checked)} />
+    </Form.Field>
+    <Button onClick={updateAPIData} type="submit">update</Button>
+    </Form>
+    </div>
   )
 }
