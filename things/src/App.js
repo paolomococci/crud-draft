@@ -18,7 +18,7 @@ function App() {
             <Route exact path='/create' component={Create} />
           </div>
           <div style={{ margin: 10 }}>
-            <p>todo read component</p>
+            <h2>list of things</h2>
           </div>
           <div style={{ margin: 10 }}>
             <p>todo update component</p>
