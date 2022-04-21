@@ -38,4 +38,11 @@ function Read() {
     localStorage.setItem('Surname', surname)
     localStorage.setItem('Checked', checked)
   }
+  const getData = () => {
+    axios.get(`http://localhost/sampledata`).then(
+      (getData) => {
+        setAPIData(getData.data)
+      }
+    )
+  }
 }
