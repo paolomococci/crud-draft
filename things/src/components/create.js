@@ -26,4 +26,18 @@ function Create() {
     checked,
     setChecked
   ] = useState(false)
+  const postData = () => {
+    axios.post(
+      `http://localhost/sampledata`,
+      {
+        name,
+        surname,
+        checked
+      }
+    ).then(() => {
+      history.push('/read')
+    })
+  }
+
+  
 }
