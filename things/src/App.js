@@ -5,6 +5,8 @@ import {
   Route
 } from 'react-router-dom'
 
+import Create from './components/create'
+
 function App() {
   return (
     <div className="App">
@@ -13,6 +15,7 @@ function App() {
         <Router>
           <div style={{ margin: 10 }} className="main">
             <h2 className="main-header">create</h2>
+            <Route exact path='/create' component={Create} />
           </div>
           <div style={{ margin: 10 }}>
             <p>todo read component</p>
