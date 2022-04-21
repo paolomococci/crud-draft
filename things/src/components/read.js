@@ -26,4 +26,16 @@ function Read() {
       )
     }
   )
+  const setData = (data) => {
+    let {
+      id,
+      name,
+      surname,
+      checked
+    } = data
+    localStorage.setItem('ID', id)
+    localStorage.setItem('Name', name)
+    localStorage.setItem('Surname', surname)
+    localStorage.setItem('Checked', checked)
+  }
 }
