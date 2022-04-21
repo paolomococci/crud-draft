@@ -13,6 +13,7 @@ import {
 } from 'react-router-dom'
 
 function Read() {
+
   const [
     APIData,
     setAPIData
@@ -26,6 +27,7 @@ function Read() {
       )
     }
   )
+
   const setData = (data) => {
     let {
       id,
@@ -38,6 +40,7 @@ function Read() {
     localStorage.setItem('Surname', surname)
     localStorage.setItem('Checked', checked)
   }
+
   const getData = () => {
     axios.get(`http://localhost/sampledata`).then(
       (getData) => {
@@ -45,6 +48,7 @@ function Read() {
       }
     )
   }
+  
   const onDelete = (id) => {
     axios.delete(`http://localhost/sampledata`).then(
       () => {
