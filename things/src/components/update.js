@@ -11,12 +11,12 @@ import {
 } from 'semantic-ui-react'
 
 import {
-  useHistory
-} from 'react-router'
+  useNavigate
+} from 'react-router-dom'
 
 function Update() {
 
-  let history = useHistory()
+  let history = useNavigate()
 
   const [
     id,
