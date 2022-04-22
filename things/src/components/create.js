@@ -9,12 +9,12 @@ import {
   Checkbox
 } from 'semantic-ui-react'
 import {
-  useHistory
-} from 'react-router'
+  useNavigate
+} from 'react-router-dom'
 
 function Create() {
 
-  let history = useHistory()
+  let history = useNavigate()
 
   const [
     name,
@@ -30,7 +30,7 @@ function Create() {
     checked,
     setChecked
   ] = useState(false)
-  
+
   const postData = () => {
     axios.post(
       `http://localhost/sampledata`,
