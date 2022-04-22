@@ -16,7 +16,7 @@ import {
 
 function Update() {
 
-  let history = useNavigate()
+  let navigate = useNavigate()
 
   const [
     id,
@@ -57,7 +57,7 @@ function Update() {
       }
     ).then(
       () => {
-        history.push('/read')
+        navigate.push('/read')
       }
     )
   }
