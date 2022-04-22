@@ -14,7 +14,7 @@ import {
 
 function Create() {
 
-  let history = useNavigate()
+  let navigate = useNavigate()
 
   const [
     name,
@@ -40,7 +40,7 @@ function Create() {
         checked
       }
     ).then(() => {
-      history.push('/read')
+      navigate.push('/read')
     })
   }
 
